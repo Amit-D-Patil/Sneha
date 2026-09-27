@@ -41,22 +41,24 @@ function initCursor() {
   const ring   = $('#cursor-ring');
   if (!cursor || !ring) return;
 
-  let mx = -100, my = -100;
-  let rx = -100, ry = -100;
-
+  // Use CSS transform directly — no lag rAF loop for dot
   document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.left = mx + 'px';
-    cursor.style.top  = my + 'px';
-    spawnSparkle(mx, my);
-  });
+    const x = e.clientX, y = e.clientY;
+    // Dot follows instantly via CSS transform (no lag)
+    cursor.style.transform = `translate(calc(${x}px - 50%), calc(${y}px - 50%))`;
+    spawnSparkle(x, y);
+  }, { passive: true });
 
-  // ring follows with lag
+  // Ring follows with slight lag via rAF
+  let rx = -100, ry = -100, tx = -100, ty = -100;
+  document.addEventListener('mousemove', e => {
+    tx = e.clientX; ty = e.clientY;
+  }, { passive: true });
+
   function animRing() {
-    rx += (mx - rx) * 0.13;
-    ry += (my - ry) * 0.13;
-    ring.style.left = rx + 'px';
-    ring.style.top  = ry + 'px';
+    rx += (tx - rx) * 0.18;
+    ry += (ty - ry) * 0.18;
+    ring.style.transform = `translate(calc(${rx}px - 50%), calc(${ry}px - 50%))`;
     requestAnimationFrame(animRing);
   }
   animRing();
@@ -703,6 +705,36 @@ function registerSW() {
 }
 
 /* ──────────────────────────────────────────────────────────
+   BIRTHDAY SURPRISE MODAL
+────────────────────────────────────────────────────────── */
+function initBirthdayModal() {
+  const modal    = $('#bday-modal');
+  const closeBtn = $('#bday-close');
+  if (!modal) return;
+
+  // Fire confetti + fireworks immediately on modal
+  setTimeout(() => {
+    window._burstConfetti?.(6000);
+    window._launchFireworks?.(5000);
+  }, 600);
+
+  closeBtn.addEventListener('click', () => {
+    modal.classList.add('hide');
+    // After hide transition, remove from layout
+    setTimeout(() => {
+      modal.style.display = 'none';
+      // Trigger another small burst as the cover screen appears
+      window._burstConfetti?.(3000);
+    }, 850);
+  });
+
+  // Also close on backdrop click
+  modal.addEventListener('click', e => {
+    if (e.target === modal) closeBtn.click();
+  });
+}
+
+/* ──────────────────────────────────────────────────────────
    BOOT
 ────────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
@@ -713,6 +745,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFloatingHearts();
   initFireworks();
   initConfetti();
+  initBirthdayModal();   // ← surprise modal first
   initCover();
   initProgressDots();
   initMusic();
