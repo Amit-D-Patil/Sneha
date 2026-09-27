@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#06040a">
+<meta name="description" content="A private love story — for Sneha, from Amit. Happy Birthday.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="For Sneha">
+
+<title>For Sneha ♥</title>
+
+<!-- PWA manifest -->
+<link rel="manifest" href="manifest.json">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&family=Caveat:wght@500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ── AMBIENT LAYERS ── -->
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<!-- ── CUSTOM CURSOR ── -->
+<div id="cursor" aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
+
+<!-- ── SCROLL PROGRESS BAR ── -->
+<div id="scroll-bar" aria-hidden="true"></div>
+
+<!-- ── CANVASES ── -->
+<canvas id="fireworks-canvas" aria-hidden="true"></canvas>
+<canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+<!-- ── PARTICLES + HEARTS ── -->
+<div id="particles" class="particles" aria-hidden="true"></div>
+<div id="hearts-layer" aria-hidden="true"></div>
+
+<!-- ── LIGHTBOX ── -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <img id="lightbox-img" src="" alt="">
+  <p id="lightbox-caption"></p>
+  <button id="lightbox-close" aria-label="Close">✕</button>
+  <button id="lightbox-prev" aria-label="Previous photo">‹</button>
+  <button id="lightbox-next" aria-label="Next photo">›</button>
+</div>
+
+<!-- ── TOAST ── -->
+<div id="toast" role="status" aria-live="polite"></div>
+
+<!-- ── TOP BAR (music + install) ── -->
+<div class="top-bar">
+  <button id="installBtn" class="glass-btn" aria-label="Install app" title="Install app">
+    <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor"><path d="M10 2a1 1 0 011 1v8.586l2.293-2.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 11.586V3a1 1 0 011-1zM3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"/></svg>
+    <span>Install</span>
+  </button>
+  <button id="musicBtn" class="glass-btn music-btn" aria-label="Play music" title="Play background music">
+    <svg viewBox="0 0 24 24" class="icon-note">
+      <path d="M9 18V5l12-2v13" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="1.4" fill="none"/>
+      <circle cx="18" cy="16" r="3" stroke="currentColor" stroke-width="1.4" fill="none"/>
+    </svg>
+  </button>
+</div>
+
+<!-- Replace with your audio file at /audio/song.mp3 -->
+<audio id="bgMusic" loop preload="none">
+  <source src="audio/song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ── CHAPTER PROGRESS DOTS ── -->
+<nav class="progress" id="progress" aria-label="Story chapters">
+  <span class="progress-dot" data-chapter="cover"  title="Cover"></span>
+  <span class="progress-dot" data-chapter="ch1"    title="The Beginning"></span>
+  <span class="progress-dot" data-chapter="ch2"    title="First Yes"></span>
+  <span class="progress-dot" data-chapter="ch3"    title="Journeys"></span>
+  <span class="progress-dot" data-chapter="ch4"    title="Real Story"></span>
+  <span class="progress-dot" data-chapter="ch5"    title="You Chose Me"></span>
+  <span class="progress-dot" data-chapter="ch6"    title="Home"></span>
+  <span class="progress-dot" data-chapter="ch7"    title="Today"></span>
+  <span class="progress-dot" data-chapter="poem"   title="Poem"></span>
+  <span class="progress-dot" data-chapter="letter" title="Letter"></span>
+  <span class="progress-dot" data-chapter="final"  title="Final"></span>
+</nav>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     OPENING COVER SCREEN
+════════════════════════════════════════════════════════════ -->
+<section class="cover" id="cover" data-chapter="cover">
+  <!-- aurora glow rings -->
+  <div class="cover-glow-ring" aria-hidden="true"></div>
+  <div class="cover-glow-ring" aria-hidden="true"></div>
+
+  <div class="cover-lines">
+    <p class="cover-line" data-line="1">Some stories are written with words.</p>
+    <p class="cover-line" data-line="2">Some are written with photographs.</p>
+    <p class="cover-line" data-line="3">But ours&hellip;</p>
+    <p class="cover-line" data-line="4">&hellip;was written by time.</p>
+    <h1 class="cover-line for-sneha" data-line="5">
+      For Sneha <span class="heart">♥</span>
+    </h1>
+    <p class="cover-tagline" id="coverTagline">A year of love, in photographs and words.</p>
+    <button class="begin-btn cover-line" data-line="6" id="beginBtn" aria-label="Begin our story">
+      <span>Begin Our Story</span>
+    </button>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     MAIN STORY
+════════════════════════════════════════════════════════════ -->
+<main id="story" hidden>
+
+  <!-- ══════════════════════════════════════════
+       CHAPTER 1 — THE DAY IT ALL BEGAN
+  ══════════════════════════════════════════ -->
+  <section class="chapter chapter-ch1" id="ch1" data-chapter="ch1">
+    <div class="chapter-in">
+      <span class="chapter-badge">Chapter One</span>
+      <p class="date-mark">29 September 2025</p>
+      <h2 class="chapter-head">The day it all began</h2>
+      <p class="lede" data-reveal>Before I knew where this story was going,<br>I simply met you.</p>
+    </div>
+
+    <div class="photo-reveal" data-reveal>
+      <figure class="polaroid tilt-card" data-lightbox>
+        <img src="images/01-first-meeting/meeting-1.jpg" alt="The day we met" loading="lazy">
+        <p class="cap">A day that looked ordinary. It wasn't.</p>
+      </figure>
+      <figure class="polaroid polaroid-alt tilt-card" data-lightbox>
+        <img src="images/01-first-meeting/meeting-2.jpg" alt="The evening we met" loading="lazy">
+        <p class="cap">Same day. A few hours later — I was already looking forward to the next.</p>
+      </figure>
+    </div>
+
+    <p class="whisper" data-reveal>I didn't know it was the beginning.<br>I only knew something had started.</p>
+  </section>
+
+  <div class="timeline-strip">
+    <span class="ts-dot"></span>
+    <span>29 September 2025 &rarr; 24 October 2025</span>
+    <span class="ts-dot"></span>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       CHAPTER 2 — THE FIRST YES
+  ══════════════════════════════════════════ -->
+  <section class="chapter chapter-ch2" id="ch2" data-chapter="ch2">
+    <div class="chapter-in">
+      <span class="chapter-badge">Chapter Two</span>
+      <p class="date-mark">24 October 2025</p>
+      <h2 class="chapter-head">The first yes</h2>
+      <p class="lede" data-reveal>Our story was no longer just a meeting.<br>It became a promise.</p>
+    </div>
+
+    <figure class="hero-photo" data-reveal data-lightbox>
+      <img src="images/02-engagement/engagement-1.jpg" alt="Engagement day" loading="lazy">
+      <p class="cap">A little more certain. A little more serious. A promise beginning to take shape.</p>
+    </figure>
+  </section>
+
+  <div class="timeline-strip">
+    <span class="ts-dot"></span>
+    <span>The journey between</span>
+    <span class="ts-dot"></span>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       CHAPTER 3 — THE JOURNEY
+  ══════════════════════════════════════════ -->
+  <section class="chapter chapter-ch3" id="ch3" data-chapter="ch3">
+    <div class="chapter-in">
+      <span class="chapter-badge">Chapter Three</span>
+      <p class="date-mark">Somewhere in between</p>
+      <h2 class="chapter-head">The journey</h2>
+      <p class="lede" data-reveal>Different places. The same two people,<br>slowly becoming one story.</p>
+    </div>
+
+    <!-- horizontal scroll gallery -->
+    <div class="scroll-gallery" data-reveal>
+      <figure class="scroll-card" data-lightbox>
+        <img src="images/03-journeys/journey-1.jpg" loading="lazy" alt="A memory together">
+        <p class="cap">Another place.</p>
+      </figure>
+
+      <figure class="scroll-card" data-lightbox>
+        <img src="images/03-journeys/journey-3.jpg" loading="lazy" alt="A memory together">
+        <p class="cap">Another reason to remember.</p>
+      </figure>
+      <figure class="scroll-card" data-lightbox>
+        <img src="images/03-journeys/journey-4.jpg" loading="lazy" alt="A memory together">
+        <p class="cap">An ordinary day that became extraordinary because you were there.</p>
+      </figure>
+      <figure class="scroll-card" data-lightbox>
+        <img src="images/03-journeys/journey-5.jpg" loading="lazy" alt="A memory together">
+        <p class="cap">Another place.</p>
+      </figure>
+      <figure class="scroll-card" data-lightbox>
+        <img src="images/03-journeys/journey-6.jpg" loading="lazy" alt="A memory together">
+        <p class="cap">Another photograph.</p>
+      </figure>
+      <figure class="scroll-card" data-lightbox>
+        <img src="images/03-journeys/journey-7.jpg" loading="lazy" alt="A memory together">
+        <p class="cap">Another reason to remember.</p>
+      </figure>
+    </div>
+    <p class="scroll-hint" data-reveal>swipe through the memories &rarr;</p>
+
+    <!-- collage grid -->
+    <div class="collage" data-reveal>
+      <figure data-lightbox>
+        <img src="images/04-beautiful-moments/moment-1.jpg" loading="lazy" alt="A quiet moment">
+      </figure>
+      <figure data-lightbox>
+        <img src="images/04-beautiful-moments/moment-2.jpg" loading="lazy" alt="A quiet moment">
+      </figure>
+      <figure data-lightbox>
+        <img src="images/04-beautiful-moments/moment-3.jpg" loading="lazy" alt="A quiet moment">
+      </figure>
+      <figure data-lightbox>
+        <img src="images/04-beautiful-moments/moment-4.jpg" loading="lazy" alt="A quiet moment">
+      </figure>
+    </div>
+
+    <p class="whisper" data-reveal>
+      We didn't know the ending.<br>
+      We didn't know the chapters.<br>
+      We only knew that something had begun,<br>
+      and we kept saying yes to it, one ordinary day at a time.
+    </p>
+  </section>
+
+  <div class="timeline-strip">
+    <span class="ts-dot"></span>
+    <span>The chapters no one else saw</span>
+    <span class="ts-dot"></span>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       CHAPTER 4 — THE REAL STORY
+  ══════════════════════════════════════════ -->
+  <section class="chapter chapter-ch4" id="ch4" data-chapter="ch4">
+    <div class="chapter-in">
+      <span class="chapter-badge">Chapter Four</span>
+      <h2 class="chapter-head">But every beautiful story<br>has difficult chapters.</h2>
+    </div>
+
+    <div class="real-story-text" data-reveal>
+      <p>There were days when everything felt easy.</p>
+      <p>And there were days when even understanding each other felt difficult.</p>
+      <p>There were moments when my own moods became battles I didn't know how to fight —<br>
+      moments when I wasn't the easiest person to love.</p>
+    </div>
+
+    <p class="stay-line" data-reveal>And yet&mdash;</p>
+    <p class="stay-word" data-reveal>you stayed.</p>
+
+    <div class="real-story-text real-story-text-2" data-reveal>
+      <p>That is something I don't think I will ever be able to explain completely.</p>
+      <p>Because you could have chosen differently. You had choices.<br>
+      You could have walked toward an easier story.</p>
+    </div>
+  </section>
+
+  <div class="timeline-strip">
+    <span class="ts-dot"></span>
+    <span>6 February 2026 — The day everything changed</span>
+    <span class="ts-dot"></span>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       CHAPTER 5 — YOU CHOSE ME
+  ══════════════════════════════════════════ -->
+  <section class="chapter chapter-ch5" id="ch5" data-chapter="ch5">
+    <div class="chapter-in">
+      <span class="chapter-badge">Chapter Five</span>
+      <p class="reveal-line" data-reveal>Among all the choices life could have given you&hellip;</p>
+      <p class="reveal-line reveal-strong" data-reveal>you chose me.</p>
+    </div>
+
+    <div class="chosen-lines" data-reveal-stagger>
+      <p>You didn't choose a perfect man.</p>
+      <p>You chose a man who is still becoming.</p>
+      <p>You saw my strengths.</p>
+      <p>You saw my weaknesses.</p>
+      <p>And somehow&hellip;</p>
+      <p class="chosen-final">you still said yes.</p>
+    </div>
+
+    <div class="date-reveal" data-reveal>
+      <p class="date-huge" id="weddingDate">6<span class="date-sep">·</span>02<span class="date-sep">·</span>2026</p>
+      <p class="date-caption">Our wedding day.</p>
+    </div>
+
+    <div class="wedding-slideshow" data-reveal>
+      <figure data-lightbox>
+        <img src="images/06-wedding/wedding-1.jpg" loading="lazy" alt="Our wedding">
+      </figure>
+      <figure data-lightbox>
+        <img src="images/06-wedding/wedding-2.jpg" loading="lazy" alt="Our wedding">
+      </figure>
+      <figure data-lightbox>
+        <img src="images/06-wedding/wedding-3.jpg" loading="lazy" alt="Our wedding">
+      </figure>
+      <figure data-lightbox>
+        <img src="images/06-wedding/wedding-4.jpg" loading="lazy" alt="Our wedding">
+      </figure>
+    </div>
+  </section>
+
+  <div class="timeline-strip">
+    <span class="ts-dot"></span>
+    <span>Our life, collected</span>
+    <span class="ts-dot"></span>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       STATS COUNTER  (animated numbers)
+  ══════════════════════════════════════════ -->
+  <section class="chapter chapter-warm" id="stats" data-chapter="stats">
+    <div class="chapter-in" data-reveal>
+      <h2 class="chapter-head" style="color:var(--gold-soft)">A year, in numbers</h2>
+    </div>
+    <div class="stats-bar" data-reveal>
+      <div class="stat-item">
+        <div class="stat-num" data-count="365">0</div>
+        <div class="stat-label">Days together</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-count="1">0</div>
+        <div class="stat-label">Wedding</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-count="20">0</div>
+        <div class="stat-label">Photographs here</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-count="1">0</div>
+        <div class="stat-label">Forever promised</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       CHAPTER 6 — HOME
+  ══════════════════════════════════════════ -->
+  <section class="chapter chapter-ch6" id="ch6" data-chapter="ch6">
+    <div class="chapter-in">
+      <span class="chapter-badge">Chapter Six</span>
+    </div>
+
+    <div class="married-gallery" data-reveal>
+      <figure data-lightbox>
+        <img src="images/07-married-life/married-1.jpg" loading="lazy" alt="Married life">
+      </figure>
+      <figure data-lightbox>
+        <img src="images/07-married-life/married-2.jpg" loading="lazy" alt="Married life">
+      </figure>
+    </div>
+
+    <div class="chapter-in" data-reveal>
+      <p class="lede lede-center">Somewhere between the photographs, the journeys, the laughter,<br>
+      the arguments, the silence, and the ordinary days&hellip;</p>
+      <p class="lede lede-center">I realized something.</p>
+      <p class="home-line">Home was never a place.</p>
+      <p class="home-word">Home was you.</p>
+    </div>
+  </section>
+
+  <div class="timeline-strip">
+    <span class="ts-dot"></span>
+    <span>29 September 2026 — One year later</span>
+    <span class="ts-dot"></span>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       CHAPTER 7 — TODAY (Birthday)
+  ══════════════════════════════════════════ -->
+  <section class="chapter chapter-warm" id="ch7" data-chapter="ch7">
+    <div class="chapter-in">
+      <span class="chapter-badge">Chapter Seven</span>
+      <p class="date-mark">29 September 2026</p>
+      <p class="reveal-line" data-reveal>Today is your birthday.</p>
+      <p class="reveal-line" data-reveal>But for me, this date means more than your birthday.</p>
+      <p class="reveal-line" data-reveal>It reminds me of the day our story began.</p>
+      <p class="reveal-line" data-reveal>A year ago, I met you.</p>
+      <p class="reveal-line reveal-strong" data-reveal>Today, I get to call you my wife.</p>
+    </div>
+
+    <figure class="hero-photo hero-photo-today" data-reveal data-lightbox>
+      <img src="images/08-today/today-1.jpg" alt="Us, today" loading="lazy">
+    </figure>
+
+    <h2 class="happy-birthday" data-reveal>
+      Happy Birthday, Sneha <span class="heart">♥</span>
+    </h2>
+  </section>
+
+  <div class="timeline-strip">
+    <span class="ts-dot"></span>
+    <span>A year, in his words</span>
+    <span class="ts-dot"></span>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       THE POEM
+  ══════════════════════════════════════════ -->
+  <section class="chapter chapter-poem poem-section" id="poem" data-chapter="poem">
+    <p class="poem-eyebrow" data-reveal>a year, in his words</p>
+    <div class="poem">
+      <p data-reveal>I didn't know it was the beginning.</p>
+      <p data-reveal>29 September,<br>just another date on the calendar,<br>until I met you<br>and somehow,<br>the days after that<br>started carrying your name.</p>
+      <p data-reveal>We didn't know the ending.<br>We didn't know the chapters.<br>We didn't know how many photographs<br>we would collect,<br>how many roads we would travel,<br>how many ordinary moments<br>would quietly become memories.</p>
+      <p data-reveal>We only knew<br>that something had begun.</p>
+      <p data-reveal>Then came 24 October.</p>
+      <p data-reveal>A little more certain.<br>A little more serious.<br>A promise beginning to take shape.</p>
+      <p data-reveal>And somewhere between<br>the conversations,<br>the laughter,<br>the journeys,<br>the photographs,<br>the beautiful days<br>and the days we wish we could rewrite,</p>
+      <p data-reveal>we became us.</p>
+      <p data-reveal>Not a perfect us.<br>A real us.</p>
+      <p data-reveal>There were days<br>when everything felt easy.</p>
+      <p data-reveal>And there were days<br>when even understanding each other<br>felt difficult.</p>
+      <p data-reveal>There were moments<br>when my own moods<br>became battles I didn't know how to fight.</p>
+      <p data-reveal>Moments when I wasn't<br>the easiest person to love.</p>
+      <p data-reveal>And yet&hellip;</p>
+      <p data-reveal class="poem-emphasis">you stayed.</p>
+      <p data-reveal>That is something<br>I don't think I will ever be able<br>to explain completely.</p>
+      <p data-reveal>Because you could have chosen differently.</p>
+      <p data-reveal>You had choices.</p>
+      <p data-reveal>You could have walked toward<br>an easier story.</p>
+      <p data-reveal>But somehow,<br>you looked at me,<br>with all my strengths,<br>all my weaknesses,<br>all the things I still need to become,</p>
+      <p data-reveal>and you chose me.</p>
+      <p data-reveal>Then came<br><span class="poem-date">6 February 2026</span>.</p>
+      <p data-reveal>A date that changed<br>the way I say your name.</p>
+      <p data-reveal>You were no longer<br>just the woman I loved.</p>
+      <p data-reveal>You became my wife.</p>
+      <p data-reveal>And I became the man<br>who was lucky enough<br>to call you his.</p>
+      <p data-reveal>Since then,<br>we have continued collecting<br>little pieces of our life.</p>
+      <p data-reveal>Photographs. Journeys. Laughter. Silences.<br>Small arguments. Small celebrations.<br>Ordinary mornings. Beautiful evenings.</p>
+      <p data-reveal>Things that probably mean nothing<br>to the rest of the world,<br>but mean everything<br>to me.</p>
+      <p data-reveal>Because they are ours.</p>
+      <p data-reveal>And today,<br><span class="poem-date">29 September</span>,</p>
+      <p data-reveal>the date where this story began,</p>
+      <p data-reveal>I look at everything behind us<br>and realize something.</p>
+      <p data-reveal>The greatest memory<br>is not one photograph.</p>
+      <p data-reveal>It is not one place.</p>
+      <p data-reveal>It is not even one perfect day.</p>
+      <p data-reveal class="poem-emphasis">It is you.</p>
+      <p data-reveal>You stayed<br>when I was not at my best.</p>
+      <p data-reveal>You held my hand<br>through chapters<br>I wish I could have written better.</p>
+      <p data-reveal>And I want you to know,</p>
+      <p data-reveal>I see that.<br>I see you.<br>I see the patience.<br>I see the love.<br>I see the choice you made.</p>
+      <p data-reveal>And I don't want to take<br>any of it for granted.</p>
+      <p data-reveal>I know I am still becoming<br>the man I want to be.</p>
+      <p data-reveal>I know there are parts of me<br>I need to change.</p>
+      <p data-reveal>But I promise you this:</p>
+      <p data-reveal>I will keep trying.</p>
+      <p data-reveal>Not because you asked me to.</p>
+      <p data-reveal>But because the life<br>we are building together<br>deserves the best version of me.</p>
+      <p data-reveal>So on your birthday,<br>I don't just want to say,<br><em>"Happy Birthday."</em></p>
+      <p data-reveal>I want to say,<br>thank you.</p>
+      <p data-reveal>Thank you for finding me.<br>Thank you for choosing me.<br>Thank you for staying.<br>Thank you for becoming my wife.</p>
+      <p data-reveal>And if life gave me<br>the chance to go back,<br>back to 29 September 2025,<br>knowing everything<br>I know today&hellip;</p>
+      <p data-reveal>I would still walk toward you.<br>I would still meet you.<br>I would still choose you.<br>I would still say yes.</p>
+      <p data-reveal>And on 6 February 2026,<br>I would still marry you.</p>
+      <p data-reveal>Because if I had<br>to live this story again,<br>I wouldn't change<br>the person beside me.</p>
+      <p data-reveal>I would only try<br>to love her better.</p>
+      <p data-reveal class="poem-signoff">
+        Happy Birthday, Sneha.<br>
+        My wife.<br>
+        My favourite chapter.<br>
+        And the person I would choose again.<br>
+        Every time.
+      </p>
+    </div>
+  </section>
+
+  <div class="timeline-strip">
+    <span class="ts-dot"></span>
+    <span>From him, to her</span>
+    <span class="ts-dot"></span>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       THE LETTER
+  ══════════════════════════════════════════ -->
+  <section class="chapter letter-section" id="letter" data-chapter="letter">
+    <div class="letter-wrap" data-reveal>
+      <p class="letter-to">Sneha,</p>
+      <p>I'm not writing this because it's your birthday. I'm writing it because I don't say this often enough out loud.</p>
+      <p>I know I am not perfect. I know there are parts of me I still need to work on. I know sometimes my moods become difficult, and I know that living with that isn't always easy.</p>
+      <p>But I want you to know — I see your patience. I see your love. I see every single time you chose to stay in the room instead of walking out of it.</p>
+      <p>I'm going through a phase right now where I don't always feel like the best version of myself. And through all of it, you have simply stayed beside me. Not because you have to. You never had to. You had other choices in life — and you chose to build yours with me anyway.</p>
+      <p>That is not a small thing. I don't want to ever treat it like one.</p>
+      <p>So thank you for choosing me. Thank you for becoming my wife. Thank you for walking beside me, on the easy days and the difficult ones.</p>
+      <p>I promise I will keep becoming a better version of myself — not because you asked me to, but because the life we are building together deserves it.</p>
+      <p class="letter-close">Happy Birthday, my Sneha.</p>
+      <p class="letter-sign">— Amit ♥</p>
+    </div>
+  </section>
+
+  <div class="timeline-strip">
+    <span class="ts-dot"></span>
+    <span>And if I could go back&hellip;</span>
+    <span class="ts-dot"></span>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       FINAL REVEAL
+  ══════════════════════════════════════════ -->
+  <section class="chapter chapter-final final-section" id="final" data-chapter="final">
+    <div class="final-lines">
+      <p class="final-line" data-reveal>One last thing&hellip;</p>
+      <p class="final-line" data-reveal>If I could go back to<br>29 September 2025&hellip;</p>
+      <p class="final-line final-pause" data-reveal>I would meet you again.</p>
+      <p class="final-line final-pause" data-reveal>I would fall for you again.</p>
+      <p class="final-line final-pause" data-reveal>I would choose you again.</p>
+      <p class="final-line" data-reveal>And I would still say&hellip;</p>
+      <p class="final-line final-date" data-reveal>6 February 2026.</p>
+      <p class="final-line final-tag" data-reveal>My wife.</p>
+      <p class="final-line final-tag" data-reveal>My Sneha.</p>
+      <h2 class="final-happy-bday" data-reveal id="finalBday">
+        Happy Birthday, Mummy <span class="heart">♥</span>
+      </h2>
+    </div>
+
+    <div class="forever" data-reveal>
+      <p>Forever isn't a promise about how long life will be.</p>
+      <p>It is a promise about who I want beside me while I live it.</p>
+    </div>
+
+    <p class="signature" data-reveal>Amit <span class="heart">♥</span> Sneha</p>
+
+    <button class="replay-btn" id="replayBtn" data-reveal>
+      ↺ &nbsp;Replay Our Story
+    </button>
+
+    <footer class="footer">Made with love by Amit <span class="heart">♥</span></footer>
+  </section>
+
+</main><!-- /story -->
+
+<!-- ══════════════════════════════════════════
+     BIRTHDAY SURPRISE MODAL
+══════════════════════════════════════════ -->
+<div id="bday-modal" aria-modal="true" role="dialog" aria-label="Birthday surprise">
+  <div class="bday-modal-inner">
+    <div class="bday-balloons" aria-hidden="true">
+      <span>🎈</span><span>🎉</span><span>🎊</span><span>🎈</span><span>💖</span><span>🎁</span><span>🎈</span>
+    </div>
+    <div class="bday-cake" aria-hidden="true">🎂</div>
+    <h2 class="bday-title">Happy Birthday<br><span class="bday-name">Sneha</span> <span class="bday-heart">♥</span></h2>
+    <p class="bday-sub">29 September 2026</p>
+    <p class="bday-msg">
+      On this special day, I want the whole world to know —<br>
+      you are <em>my favourite person</em>, my home, my wife.<br>
+      Every single day with you is a gift I never take for granted.<br><br>
+      May this year bring you all the happiness<br>
+      you so effortlessly bring to everyone around you.<br><br>
+      <strong>I love you, Sneha. Always.</strong>
+    </p>
+    <div class="bday-stars" aria-hidden="true">✨ ⭐ 🌟 ✨ ⭐</div>
+    <button id="bday-close" class="bday-close-btn">
+      Open Our Story &nbsp;♥
+    </button>
+    <p class="bday-from">— with all my love, Amit</p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

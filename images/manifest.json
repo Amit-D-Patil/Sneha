@@ -1,0 +1,170 @@
+{
+  "images/03-journeys/journey-1.jpg": {
+    "w": 1600,
+    "h": 900,
+    "full_webp": "images/03-journeys/journey-1.webp",
+    "display_webp": "images/03-journeys/journey-1@display.webp",
+    "display_w": 1000,
+    "display_h": 562
+  },
+  "images/03-journeys/journey-2.jpg": {
+    "w": 1600,
+    "h": 2133,
+    "full_webp": "images/03-journeys/journey-2.webp",
+    "display_webp": "images/03-journeys/journey-2@display.webp",
+    "display_w": 750,
+    "display_h": 1000
+  },
+  "images/03-journeys/journey-3.jpg": {
+    "w": 1600,
+    "h": 1200,
+    "full_webp": "images/03-journeys/journey-3.webp",
+    "display_webp": "images/03-journeys/journey-3@display.webp",
+    "display_w": 1000,
+    "display_h": 750
+  },
+  "images/03-journeys/journey-4.jpg": {
+    "w": 1600,
+    "h": 2133,
+    "full_webp": "images/03-journeys/journey-4.webp",
+    "display_webp": "images/03-journeys/journey-4@display.webp",
+    "display_w": 750,
+    "display_h": 1000
+  },
+  "images/03-journeys/journey-5.jpg": {
+    "w": 1600,
+    "h": 2133,
+    "full_webp": "images/03-journeys/journey-5.webp",
+    "display_webp": "images/03-journeys/journey-5@display.webp",
+    "display_w": 750,
+    "display_h": 1000
+  },
+  "images/03-journeys/journey-6.jpg": {
+    "w": 1600,
+    "h": 2133,
+    "full_webp": "images/03-journeys/journey-6.webp",
+    "display_webp": "images/03-journeys/journey-6@display.webp",
+    "display_w": 750,
+    "display_h": 1000
+  },
+  "images/03-journeys/journey-7.jpg": {
+    "w": 1600,
+    "h": 2133,
+    "full_webp": "images/03-journeys/journey-7.webp",
+    "display_webp": "images/03-journeys/journey-7@display.webp",
+    "display_w": 750,
+    "display_h": 1000
+  },
+  "images/04-beautiful-moments/moment-1.jpg": {
+    "w": 1600,
+    "h": 2133,
+    "full_webp": "images/04-beautiful-moments/moment-1.webp",
+    "display_webp": "images/04-beautiful-moments/moment-1@display.webp",
+    "display_w": 750,
+    "display_h": 1000
+  },
+  "images/04-beautiful-moments/moment-2.jpg": {
+    "w": 1600,
+    "h": 2133,
+    "full_webp": "images/04-beautiful-moments/moment-2.webp",
+    "display_webp": "images/04-beautiful-moments/moment-2@display.webp",
+    "display_w": 750,
+    "display_h": 1000
+  },
+  "images/04-beautiful-moments/moment-3.jpg": {
+    "w": 1600,
+    "h": 2133,
+    "full_webp": "images/04-beautiful-moments/moment-3.webp",
+    "display_webp": "images/04-beautiful-moments/moment-3@display.webp",
+    "display_w": 750,
+    "display_h": 1000
+  },
+  "images/04-beautiful-moments/moment-4.jpg": {
+    "w": 1600,
+    "h": 2133,
+    "full_webp": "images/04-beautiful-moments/moment-4.webp",
+    "display_webp": "images/04-beautiful-moments/moment-4@display.webp",
+    "display_w": 750,
+    "display_h": 1000
+  },
+  "images/07-married-life/married-1.jpg": {
+    "w": 1023,
+    "h": 1537,
+    "full_webp": "images/07-married-life/married-1.webp",
+    "display_webp": "images/07-married-life/married-1@display.webp",
+    "display_w": 666,
+    "display_h": 1000
+  },
+  "images/07-married-life/married-2.jpg": {
+    "w": 1086,
+    "h": 1448,
+    "full_webp": "images/07-married-life/married-2.webp",
+    "display_webp": "images/07-married-life/married-2@display.webp",
+    "display_w": 750,
+    "display_h": 1000
+  },
+  "images/08-today/today-1.jpg": {
+    "w": 1086,
+    "h": 1448,
+    "full_webp": "images/08-today/today-1.webp",
+    "display_webp": "images/08-today/today-1@display.webp",
+    "display_w": 750,
+    "display_h": 1000
+  },
+  "images/02-engagement/engagement-1.jpg": {
+    "w": 1600,
+    "h": 2400,
+    "full_webp": "images/02-engagement/engagement-1.webp",
+    "display_webp": "images/02-engagement/engagement-1@display.webp",
+    "display_w": 667,
+    "display_h": 1000
+  },
+  "images/01-first-meeting/meeting-1.jpg": {
+    "w": 1600,
+    "h": 1200,
+    "full_webp": "images/01-first-meeting/meeting-1.webp",
+    "display_webp": "images/01-first-meeting/meeting-1@display.webp",
+    "display_w": 1000,
+    "display_h": 750
+  },
+  "images/01-first-meeting/meeting-2.jpg": {
+    "w": 1600,
+    "h": 2133,
+    "full_webp": "images/01-first-meeting/meeting-2.webp",
+    "display_webp": "images/01-first-meeting/meeting-2@display.webp",
+    "display_w": 750,
+    "display_h": 1000
+  },
+  "images/06-wedding/wedding-1.jpg": {
+    "w": 1600,
+    "h": 2133,
+    "full_webp": "images/06-wedding/wedding-1.webp",
+    "display_webp": "images/06-wedding/wedding-1@display.webp",
+    "display_w": 750,
+    "display_h": 1000
+  },
+  "images/06-wedding/wedding-2.jpg": {
+    "w": 1600,
+    "h": 2133,
+    "full_webp": "images/06-wedding/wedding-2.webp",
+    "display_webp": "images/06-wedding/wedding-2@display.webp",
+    "display_w": 750,
+    "display_h": 1000
+  },
+  "images/06-wedding/wedding-3.jpg": {
+    "w": 1600,
+    "h": 2133,
+    "full_webp": "images/06-wedding/wedding-3.webp",
+    "display_webp": "images/06-wedding/wedding-3@display.webp",
+    "display_w": 750,
+    "display_h": 1000
+  },
+  "images/06-wedding/wedding-4.jpg": {
+    "w": 1600,
+    "h": 2133,
+    "full_webp": "images/06-wedding/wedding-4.webp",
+    "display_webp": "images/06-wedding/wedding-4@display.webp",
+    "display_w": 750,
+    "display_h": 1000
+  }
+}

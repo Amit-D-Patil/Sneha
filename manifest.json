@@ -1,0 +1,28 @@
+{
+  "name": "For Sneha — A Love Story",
+  "short_name": "For Sneha ♥",
+  "description": "A private love story built with photographs and words. Happy Birthday, Sneha.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#06040a",
+  "theme_color": "#06040a",
+  "orientation": "portrait-primary",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "categories": ["lifestyle", "personalization"],
+  "prefer_related_applications": false
+}

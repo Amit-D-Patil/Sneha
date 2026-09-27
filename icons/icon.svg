@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#06040a"/>
+  <!-- gradient heart -->
+  <defs>
+    <linearGradient id="hg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#f0b429"/>
+      <stop offset="50%"  stop-color="#f06292"/>
+      <stop offset="100%" stop-color="#9c27b0"/>
+    </linearGradient>
+  </defs>
+  <path d="M256 380
+    C256 380 120 300 120 210
+    C120 165 155 140 196 140
+    C220 140 240 154 256 172
+    C272 154 292 140 316 140
+    C357 140 392 165 392 210
+    C392 300 256 380 256 380Z"
+    fill="url(#hg)"/>
+  <!-- S monogram -->
+  <text x="256" y="290" font-family="Georgia,serif" font-size="110" font-weight="700"
+        text-anchor="middle" fill="rgba(255,255,255,0.15)">S</text>
+</svg>

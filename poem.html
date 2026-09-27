@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#06040a">
+<meta name="description" content="A private love story — for Sneha, from Amit. Happy Birthday.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="For Sneha">
+
+<title>A year, in his words — For Sneha ♥</title>
+
+<link rel="manifest" href="manifest.json">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&family=Caveat:wght@500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+<link rel="prefetch" href="letter.html">
+</head>
+<body data-page="poem">
+
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<div id="cursor" aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
+
+<div id="scroll-bar" aria-hidden="true"></div>
+
+<canvas id="fireworks-canvas" aria-hidden="true"></canvas>
+<canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+<div id="particles" class="particles" aria-hidden="true"></div>
+<div id="hearts-layer" aria-hidden="true"></div>
+
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <img id="lightbox-img" src="" alt="">
+  <p id="lightbox-caption"></p>
+  <button id="lightbox-close" aria-label="Close">&#10005;</button>
+  <button id="lightbox-prev" aria-label="Previous photo">&#8249;</button>
+  <button id="lightbox-next" aria-label="Next photo">&#8250;</button>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<div class="top-bar">
+  <button id="installBtn" class="glass-btn" aria-label="Install app" title="Install app">
+    <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor"><path d="M10 2a1 1 0 011 1v8.586l2.293-2.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 11.586V3a1 1 0 011-1zM3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"/></svg>
+    <span>Install</span>
+  </button>
+  <button id="musicBtn" class="glass-btn music-btn" aria-label="Play music" title="Play background music">
+    <svg viewBox="0 0 24 24" class="icon-note">
+      <path d="M9 18V5l12-2v13" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="1.4" fill="none"/>
+      <circle cx="18" cy="16" r="3" stroke="currentColor" stroke-width="1.4" fill="none"/>
+    </svg>
+  </button>
+</div>
+
+<audio id="bgMusic" loop preload="none">
+  <source src="audio/song.mp3" type="audio/mpeg">
+</audio>
+<nav class="progress" aria-label="Story chapters">
+  <a class="progress-dot" href="index.html" title="Cover" aria-label="Cover"></a>
+  <a class="progress-dot" href="ch1.html" title="The Beginning" aria-label="The Beginning"></a>
+  <a class="progress-dot" href="ch2.html" title="First Yes" aria-label="First Yes"></a>
+  <a class="progress-dot" href="ch3.html" title="Journeys" aria-label="Journeys"></a>
+  <a class="progress-dot" href="ch4.html" title="Real Story" aria-label="Real Story"></a>
+  <a class="progress-dot" href="ch5.html" title="You Chose Me" aria-label="You Chose Me"></a>
+  <a class="progress-dot" href="ch6.html" title="Home" aria-label="Home"></a>
+  <a class="progress-dot" href="ch7.html" title="Today" aria-label="Today"></a>
+  <a class="progress-dot active" href="poem.html" title="Poem" aria-label="Poem"></a>
+  <a class="progress-dot" href="letter.html" title="Letter" aria-label="Letter"></a>
+  <a class="progress-dot" href="final.html" title="Final" aria-label="Final"></a>
+</nav>
+
+<main id="story">
+
+  <section class="chapter chapter-poem poem-section" id="poem" data-chapter="poem">
+    <p class="poem-eyebrow" data-reveal>a year, in his words</p>
+    <div class="poem">
+      <p data-reveal>I didn't know it was the beginning.</p>
+      <p data-reveal>29 September,<br>just another date on the calendar,<br>until I met you<br>and somehow,<br>the days after that<br>started carrying your name.</p>
+      <p data-reveal>We didn't know the ending.<br>We didn't know the chapters.<br>We didn't know how many photographs<br>we would collect,<br>how many roads we would travel,<br>how many ordinary moments<br>would quietly become memories.</p>
+      <p data-reveal>We only knew<br>that something had begun.</p>
+      <p data-reveal>Then came 24 October.</p>
+      <p data-reveal>A little more certain.<br>A little more serious.<br>A promise beginning to take shape.</p>
+      <p data-reveal>And somewhere between<br>the conversations,<br>the laughter,<br>the journeys,<br>the photographs,<br>the beautiful days<br>and the days we wish we could rewrite,</p>
+      <p data-reveal>we became us.</p>
+      <p data-reveal>Not a perfect us.<br>A real us.</p>
+      <p data-reveal>There were days<br>when everything felt easy.</p>
+      <p data-reveal>And there were days<br>when even understanding each other<br>felt difficult.</p>
+      <p data-reveal>There were moments<br>when my own moods<br>became battles I didn't know how to fight.</p>
+      <p data-reveal>Moments when I wasn't<br>the easiest person to love.</p>
+      <p data-reveal>And yet&hellip;</p>
+      <p data-reveal class="poem-emphasis">you stayed.</p>
+      <p data-reveal>That is something<br>I don't think I will ever be able<br>to explain completely.</p>
+      <p data-reveal>Because you could have chosen differently.</p>
+      <p data-reveal>You had choices.</p>
+      <p data-reveal>You could have walked toward<br>an easier story.</p>
+      <p data-reveal>But somehow,<br>you looked at me,<br>with all my strengths,<br>all my weaknesses,<br>all the things I still need to become,</p>
+      <p data-reveal>and you chose me.</p>
+      <p data-reveal>Then came<br><span class="poem-date">6 February 2026</span>.</p>
+      <p data-reveal>A date that changed<br>the way I say your name.</p>
+      <p data-reveal>You were no longer<br>just the woman I loved.</p>
+      <p data-reveal>You became my wife.</p>
+      <p data-reveal>And I became the man<br>who was lucky enough<br>to call you his.</p>
+      <p data-reveal>Since then,<br>we have continued collecting<br>little pieces of our life.</p>
+      <p data-reveal>Photographs. Journeys. Laughter. Silences.<br>Small arguments. Small celebrations.<br>Ordinary mornings. Beautiful evenings.</p>
+      <p data-reveal>Things that probably mean nothing<br>to the rest of the world,<br>but mean everything<br>to me.</p>
+      <p data-reveal>Because they are ours.</p>
+      <p data-reveal>And today,<br><span class="poem-date">29 September</span>,</p>
+      <p data-reveal>the date where this story began,</p>
+      <p data-reveal>I look at everything behind us<br>and realize something.</p>
+      <p data-reveal>The greatest memory<br>is not one photograph.</p>
+      <p data-reveal>It is not one place.</p>
+      <p data-reveal>It is not even one perfect day.</p>
+      <p data-reveal class="poem-emphasis">It is you.</p>
+      <p data-reveal>You stayed<br>when I was not at my best.</p>
+      <p data-reveal>You held my hand<br>through chapters<br>I wish I could have written better.</p>
+      <p data-reveal>And I want you to know,</p>
+      <p data-reveal>I see that.<br>I see you.<br>I see the patience.<br>I see the love.<br>I see the choice you made.</p>
+      <p data-reveal>And I don't want to take<br>any of it for granted.</p>
+      <p data-reveal>I know I am still becoming<br>the man I want to be.</p>
+      <p data-reveal>I know there are parts of me<br>I need to change.</p>
+      <p data-reveal>But I promise you this:</p>
+      <p data-reveal>I will keep trying.</p>
+      <p data-reveal>Not because you asked me to.</p>
+      <p data-reveal>But because the life<br>we are building together<br>deserves the best version of me.</p>
+      <p data-reveal>So on your birthday,<br>I don't just want to say,<br><em>&ldquo;Happy Birthday.&rdquo;</em></p>
+      <p data-reveal>I want to say,<br>thank you.</p>
+      <p data-reveal>Thank you for finding me.<br>Thank you for choosing me.<br>Thank you for staying.<br>Thank you for becoming my wife.</p>
+      <p data-reveal>And if life gave me<br>the chance to go back,<br>back to 29 September 2025,<br>knowing everything<br>I know today&hellip;</p>
+      <p data-reveal>I would still walk toward you.<br>I would still meet you.<br>I would still choose you.<br>I would still say yes.</p>
+      <p data-reveal>And on 6 February 2026,<br>I would still marry you.</p>
+      <p data-reveal>Because if I had<br>to live this story again,<br>I wouldn't change<br>the person beside me.</p>
+      <p data-reveal>I would only try<br>to love her better.</p>
+      <p data-reveal class="poem-signoff">
+        Happy Birthday, Sneha.<br>
+        My wife.<br>
+        My favourite chapter.<br>
+        And the person I would choose again.<br>
+        Every time.
+      </p>
+    </div>
+  </section>
+
+  <div class="timeline-strip">
+    <span class="ts-dot"></span>
+    <span>From him, to her</span>
+    <span class="ts-dot"></span>
+  </div>
+
+  <div class="chapter-nav">
+    <a class="next-chapter-btn" href="letter.html">The Letter &rarr;</a>
+  </div>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
